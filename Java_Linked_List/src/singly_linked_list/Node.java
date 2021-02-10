@@ -2,10 +2,10 @@ package singly_linked_list;
 
 public class Node {
 
-	String data;
+	int data;
 	Node next;
 
-	public Node(String data) {
+	public Node(int data) {
 		this.data = data;
 		this.next = null;
 	}

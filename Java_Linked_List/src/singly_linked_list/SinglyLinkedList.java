@@ -11,6 +11,7 @@ public class SinglyLinkedList {
 	}
 
 	public Boolean isEmpty() {
+		// return (head==null);
 		return ((head == null) ? true : false);
 	}
 
@@ -28,10 +29,10 @@ public class SinglyLinkedList {
 		}
 	}
 
-	public void addFirst(String data) {
+	public void addFirst(int data) {
 
 		Node newNode = new Node(data);
-		if (head == null) {
+		if (isEmpty()) {
 			head = newNode;
 		} else {
 			newNode.next = head;
@@ -39,9 +40,9 @@ public class SinglyLinkedList {
 		}
 	}
 
-	public void addLast(String data) {
+	public void addLast(int data) {
 		Node newNode = new Node(data);
-		if (head == null) {
+		if (isEmpty()) {
 			head = newNode;
 			tail = newNode;
 
@@ -54,7 +55,7 @@ public class SinglyLinkedList {
 		}
 	}
 
-	public void addAt(int position, String data) {
+	public void addAt(int position, int data) {
 		Node newNode = new Node(data);
 		if (position == 0) {
 			addFirst(data);
@@ -67,6 +68,152 @@ public class SinglyLinkedList {
 			newNode.next = tail.next;
 			tail.next = newNode;
 		}
+	}
+
+	public void deleteFirstNode() {
+		if (isEmpty()) {
+			return;
+		} else {
+			if (head.next == null) {
+				head = null;
+
+			} else {
+				head = head.next;
+			}
+		}
+	}
+
+	public void deleteLastNode() {
+		if (isEmpty()) {
+			return;
+		} else {
+			tail = head;
+			if (tail.next == null) {
+				head = tail = null;
+
+			} else {
+				while (tail.next.next != null) {
+					tail = tail.next;
+				}
+				tail.next = null;
+			}
+		}
+	}
+
+	public void deleteNode(int data) {
+		if (isEmpty()) {
+			return;
+		} else {
+			tail = head;
+			while (tail.next.data != data) {
+				tail = tail.next;
+			}
+			tail.next = tail.next.next;
+		}
+	}
+
+	public void deleteNodeAt(int position) {
+		if (isEmpty()) {
+			return;
+		} else {
+			if (position == 0) {
+				deleteFirstNode();
+			} else if (position >= getSizeList()) {
+				System.out.print("\nThere is no element at this position");
+				return;
+			} else {
+				Node currentNode = head;
+				for (int i = 0; i < position - 1; i++) {
+					currentNode = currentNode.next;
+				}
+				currentNode.next = currentNode.next.next;
+			}
+		}
+	}
+
+	public void displayReverse() {
+		if (isEmpty()) {
+			return;
+		} else {
+			Node previousNode = null;
+			Node nextNode = null;
+			Node currentNode = head;
+			while (currentNode != null) {
+				nextNode = currentNode.next;
+				currentNode.next = previousNode;
+				previousNode = currentNode;
+				currentNode = nextNode;
+			}
+			head = previousNode;
+		}
+	}
+
+	public int searchElement(int element) {
+		int positionInList = -1;
+		if (isEmpty()) {
+			return -1;
+		} else {
+			Node currentNode = head;
+			while (currentNode != null) {
+				positionInList++;
+				if (currentNode.data == element) {
+					// if (currentNode.data.equals(element)) {
+					return positionInList;
+				}
+				currentNode = currentNode.next;
+			}
+		}
+		return -1;
+	}
+
+	public int maximumValue() {
+		Node currentNode = head;
+		int maxValue = head.data;
+		tail = head;
+		if (head == null) {
+			System.out.println("List is empty");
+		} else {
+			while (currentNode != null) {
+				if (maxValue < currentNode.data) {
+					maxValue = currentNode.data;
+				}
+				currentNode = currentNode.next;
+			}
+
+		}
+		return maxValue;
+	}
+
+	public int minimumValue() {
+		Node currentNode = head;
+		int minValue = head.data;
+		tail = head;
+		if (head == null) {
+			System.out.println("List is empty");
+		} else {
+			while (currentNode != null) {
+				if (minValue > currentNode.data) {
+					minValue = currentNode.data;
+				}
+				currentNode = currentNode.next;
+			}
+
+		}
+		return minValue;
+	}
+
+	public int getSizeList() {
+		int count = 0;
+		if (isEmpty()) {
+			return 0;
+		} else {
+			tail = head;
+			while (tail != null) {
+				count++;
+				tail = tail.next;
+			}
+		}
+		return count;
 	}
 
 }
