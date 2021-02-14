@@ -131,9 +131,9 @@ public class SinglyLinkedList {
 		}
 	}
 
-	public void displayReverse() {
-		if (isEmpty()) {
-			return;
+	public Node listReverse() {
+		if (head == null) {
+			System.out.println("List is empty");
 		} else {
 			Node previousNode = null;
 			Node nextNode = null;
@@ -146,6 +146,7 @@ public class SinglyLinkedList {
 			}
 			head = previousNode;
 		}
+		return head;
 	}
 
 	public int searchElement(int element) {
@@ -200,6 +201,112 @@ public class SinglyLinkedList {
 
 		}
 		return minValue;
+	}
+
+	public Boolean isPalindrome() {
+		if (head == null) {
+			System.out.println("List is empty");
+		} else {
+			Node currentNode = head;
+			Node listReverse = listReverse();
+			while (currentNode != null && listReverse != null) {
+				if (currentNode.data != listReverse.data) {
+					return false;
+				}
+				currentNode = currentNode.next;
+				listReverse = listReverse.next;
+			}
+		}
+		return true;
+	}
+
+	public void removeDuplicate() {
+		if (head == null) {
+			System.out.println("List is empty");
+		} else {
+			Node currentNode = head;
+			while (currentNode != null) {
+				Node temp = currentNode;
+				Node index = currentNode.next;
+				while (index != null) {
+					if (currentNode.data == index.data) {
+						temp.next = index.next;
+					} else {
+						temp = index;
+					}
+					index = index.next;
+				}
+				currentNode = currentNode.next;
+			}
+		}
+	}
+
+	public void sortAscend() {
+		if (isEmpty()) {
+			return;
+		} else {
+			Node currentNode = head;
+			while (currentNode != null) {
+				Node index = currentNode.next;
+				while (index != null) {
+					if (currentNode.data > index.data) {
+						int temp = currentNode.data;
+						currentNode.data = index.data;
+						index.data = temp;
+					}
+					index = index.next;
+				}
+				currentNode = currentNode.next;
+			}
+		}
+	}
+
+	public void sortDescend() {
+		if (isEmpty()) {
+			return;
+		} else {
+			Node currentNode = head;
+			while (currentNode != null) {
+				Node index = currentNode.next;
+				while (index != null) {
+					if (currentNode.data < index.data) {
+						int temp = currentNode.data;
+						currentNode.data = index.data;
+						index.data = temp;
+					}
+					index = index.next;
+				}
+				currentNode = currentNode.next;
+			}
+		}
+	}
+
+	public void sortedInsert(int data) {
+		Node newNode = new Node(data);
+		if (head == null) {
+			System.out.println("List is empty");
+		} else if (head.next == null) {
+			if (head.data > newNode.data) {
+				addFirst(data);
+			} else {
+				addLast(data);
+			}
+		} else {
+			Node currentNode = head;
+			while (currentNode != null) {
+				if (head.data > newNode.data) {
+					addFirst(data);
+				} else if (currentNode.data < newNode.data && currentNode.next == null) {
+					currentNode.next = newNode;
+				} else if (currentNode.data < newNode.data && currentNode.next.data > newNode.data) {
+					newNode.next = currentNode.next;
+					currentNode.next = newNode;
+					break;
+				}
+				currentNode = currentNode.next;
+			}
+
+		}
 	}
 
 	public int getSizeList() {
