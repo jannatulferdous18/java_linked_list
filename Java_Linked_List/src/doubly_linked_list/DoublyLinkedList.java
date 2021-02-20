@@ -95,7 +95,9 @@ public class DoublyLinkedList {
 		} else {
 			tail = head;
 			while (tail != null) {
-				if (tail.data.equals(afterElement)) {
+				if (tail.data.equals(afterElement) && tail.next == null) {
+					tail.next = newNode;
+				} else if (tail.data.equals(afterElement)) {
 					newNode.next = tail.next;
 					tail.next.previous = newNode;
 					tail.next = newNode;
