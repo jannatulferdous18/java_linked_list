@@ -17,6 +17,20 @@ public class TestClass {
 		s1.printStack();
 		System.out.println("Peek element in the stack: " + s1.peek());
 		System.out.println("Size of the stack: " + s1.sizeStack());
+
+		Queue q1 = new Queue();
+		q1.enqueue(10);
+		q1.enqueue(20);
+		q1.enqueue(30);
+		q1.enqueue(40);
+		q1.enqueue(50);
+		q1.enqueue(60);
+		System.out.print("Elements in the queue: ");
+		q1.printQueue();
+		q1.dequeue();
+		System.out.print("Elements in the queue after dequeuing: ");
+		q1.printQueue();
+		System.out.println("Size of the queue: " + q1.sizeQueue());
 	}
 
 }

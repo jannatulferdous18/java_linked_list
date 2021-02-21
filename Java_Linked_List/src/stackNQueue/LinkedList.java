@@ -47,6 +47,23 @@ public class LinkedList {
 		}
 	}
 
+	public void removeLast() {
+		if (isEmpty()) {
+			return;
+		} else {
+			Node tail = head;
+			if (tail.next == null) {
+				head = tail = null;
+
+			} else {
+				while (tail.next.next != null) {
+					tail = tail.next;
+				}
+				tail.next = null;
+			}
+		}
+	}
+
 	public int getSize() {
 		int count = 0;
 		if (isEmpty()) {
