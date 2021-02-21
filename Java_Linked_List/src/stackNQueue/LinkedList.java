@@ -2,6 +2,7 @@ package stackNQueue;
 
 public class LinkedList {
 	Node head;
+	Node tail;
 
 	public LinkedList() {
 		head = null;
@@ -34,6 +35,21 @@ public class LinkedList {
 		}
 	}
 
+	public void addLast(int data) {
+		Node newNode = new Node(data);
+		if (isEmpty()) {
+			head = newNode;
+			tail = newNode;
+
+		} else {
+			tail = head;
+			while (tail.next != null) {
+				tail = tail.next;
+			}
+			tail.next = newNode;
+		}
+	}
+
 	public void removeFirst() {
 		if (isEmpty()) {
 			return;
@@ -43,23 +59,6 @@ public class LinkedList {
 
 			} else {
 				head = head.next;
-			}
-		}
-	}
-
-	public void removeLast() {
-		if (isEmpty()) {
-			return;
-		} else {
-			Node tail = head;
-			if (tail.next == null) {
-				head = tail = null;
-
-			} else {
-				while (tail.next.next != null) {
-					tail = tail.next;
-				}
-				tail.next = null;
 			}
 		}
 	}

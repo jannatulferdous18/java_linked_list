@@ -4,11 +4,11 @@ public class Queue {
 	LinkedList queueElement = new LinkedList();
 
 	public void enqueue(int data) {
-		queueElement.addFirst(data);
+		queueElement.addLast(data);
 	}
 
 	public void dequeue() {
-		queueElement.removeLast();
+		queueElement.removeFirst();
 	}
 
 	public void printQueue() {
@@ -17,5 +17,9 @@ public class Queue {
 
 	public int sizeQueue() {
 		return (queueElement.getSize());
+	}
+
+	public int front() {
+		return (queueElement.head.data);
 	}
 }
