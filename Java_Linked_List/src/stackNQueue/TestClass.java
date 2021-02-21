@@ -10,6 +10,7 @@ public class TestClass {
 		s1.push(40);
 		s1.push(50);
 		s1.push(60);
+
 		System.out.print("Elements in the stack: ");
 		s1.printStack();
 		s1.pop();
@@ -25,11 +26,13 @@ public class TestClass {
 		q1.enqueue(40);
 		q1.enqueue(50);
 		q1.enqueue(60);
+
 		System.out.print("Elements in the queue: ");
 		q1.printQueue();
 		q1.dequeue();
 		System.out.print("Elements in the queue after dequeuing: ");
 		q1.printQueue();
+		System.out.println("Front element in the queue: " + q1.front());
 		System.out.println("Size of the queue: " + q1.sizeQueue());
 	}
 
