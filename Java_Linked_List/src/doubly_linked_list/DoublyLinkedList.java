@@ -258,18 +258,10 @@ public class DoublyLinkedList {
 		} else {
 			Node currentNode = head;
 			while (currentNode != null) {
-				if (!currentNode.equals(head)) {
-					if (currentNode.data.contains("Yes")) {
+
+				if (currentNode.data.contains("Yes")) {
+					if (!currentNode.equals(head)) {
 						number_yes++;
-						if (currentNode.next == null) {
-							removeLastNode();
-						} else {
-							currentNode.previous.next = currentNode.next;
-							currentNode.next.previous = currentNode.previous;
-							currentNode.previous.next = currentNode.next;
-						}
-					} else if (currentNode.data.contains("UD")) {
-						number_ud++;
 						if (currentNode.next == null) {
 							removeLastNode();
 						} else {
@@ -281,15 +273,30 @@ public class DoublyLinkedList {
 				}
 				currentNode = currentNode.next;
 			}
-			tail = head;
-			if (tail != null) {
-				for (int i = 1; i < number_yes; i++) {
-					addFirst("Yes");
+			for (int i = 1; i < number_yes; i++) {
+				addFirst("Yes");
+			}
+
+			Node newCurrentNode = head;
+
+			while (newCurrentNode != null) {
+				if (newCurrentNode.data.contains("UD")) {
+					if (!newCurrentNode.equals(head)) {
+						number_ud++;
+						if (newCurrentNode.next == null) {
+							removeLastNode();
+						} else {
+							newCurrentNode.previous.next = newCurrentNode.next;
+							newCurrentNode.next.previous = newCurrentNode.previous;
+							newCurrentNode.previous.next = newCurrentNode.next;
+						}
+					}
 				}
-				for (int i = 0; i < number_ud; i++) {
-					addLast("UD");
-				}
-				tail = tail.next;
+				newCurrentNode = newCurrentNode.next;
+			}
+
+			for (int i = 0; i < number_ud; i++) {
+				addLast("UD");
 			}
 		}
 
